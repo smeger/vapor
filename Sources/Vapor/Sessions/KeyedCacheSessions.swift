@@ -22,7 +22,7 @@ public final class KeyedCacheSessions: Sessions, ServiceType {
     public func createSession(_ session: Session) throws -> Future<Void> {
         let sessionID = try CryptoRandom().generateData(count: 16).base64EncodedString()
         session.id = sessionID
-        return keyedCache.set(sessionID, to: session.data)
+        return keyedCache.create(sessionID, to: session.data)
     }
 
     /// See `Sessions`.
